@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <array>
+#include <cmath>
 #include <string>
 #include <fstream>
 #include <streambuf>
