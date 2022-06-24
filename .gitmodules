@@ -1,0 +1,6 @@
+[submodule "DRFLn"]
+	path = DRFLn
+	url = https://github.com/ITMORobotics/DRFLn.git
+[submodule "gpr"]
+	path = gpr
+	url = https://github.com/dillonhuff/gpr.git
