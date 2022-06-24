@@ -13,7 +13,11 @@ namespace dgc
 
         target_vel[0] = feedrate_;
 
-        std::array<float, 6> target = {new_XYZ_[0] + 400, new_XYZ_[1] + 0, new_XYZ_[2] + 400, 180, 180, 180};
+        std::array<float, 6> target = table_frame;
+        target[0] += new_XYZ_[0];
+        target[1] += new_XYZ_[1];
+        target[2] += new_XYZ_[2];
+
         robot->servol(target, target_vel, target_acc);
     }
 
@@ -28,7 +32,11 @@ namespace dgc
 
         target_vel[0] = feedrate_;
 
-        std::array<float, 6> target = {new_XYZ_[0] + 400, new_XYZ_[1] + 0, new_XYZ_[2] + 400, 180, 180, 180};
+        std::array<float, 6> target = table_frame;
+        target[0] += new_XYZ_[0];
+        target[1] += new_XYZ_[1];
+        target[2] += new_XYZ_[2];
+
         robot->servol(target, target_vel, target_acc);
     }
 
@@ -38,7 +46,8 @@ namespace dgc
         std::cout << "G28" << std::endl;
         std::cout << "---" << std::endl;
 
-        std::array<float, 6> target = {400, 0, -100 + 400, 180, 180, 180};
+        std::array<float, 6> target = table_frame;
+        target[2] += 0.1;
 
         robot->movel(target, default_max_vel, default_max_acc);
     }

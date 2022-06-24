@@ -37,6 +37,9 @@ namespace dgc
 
         last_XYZ_ = {0, 0, 0};
         new_XYZ_ = {0, 0, 0};
+
+        // HARDCOE of the frame position
+        table_frame = {400, 0, 400, 180, 180, 180}; // mm and degrees [x, y, z, A, B, C]
     };
 
     void DoosanGCode::parseLine(std::string gcode)

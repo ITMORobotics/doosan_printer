@@ -22,6 +22,9 @@ namespace dgc
             std::array<float, 2>    target_vel;
             std::array<float, 2>    target_acc; // mm/s^2
 
+            // Table frame, home position
+            std::array<float, 6>    table_frame;
+
             std::array<float, 2>    default_max_vel;
             std::array<float, 2>    default_max_acc; // mm/s^2
 
