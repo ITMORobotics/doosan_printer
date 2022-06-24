@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
+#include <cmath>
 
 using namespace gpr;
 using namespace std;
@@ -24,11 +25,22 @@ int main(int argc, char** argv)
         std::string gcode = "G28 ;Home";
         dg.parseLine(gcode);
 
-        gcode = "G1 Z15.0 F3000 ;Move the platform down 15mm";
+        gcode = "G0 F3600 X145 Y45 Z0.0";
         dg.parseLine(gcode);
 
-        gcode = "G0 F3600 X43.256 Y45.828 Z0.3";
-        dg.parseLine(gcode);
+        size_t n = 1000;
+        std::stringstream fmt;
+        for (size_t i = 0; i < n; ++i)
+        {
+            fmt.str("");
+            float x = 100*cos(2*M_PI/n * i) + 45;
+            float y = 100*sin(2*M_PI/n * i) + 45;
+            fmt << "G1 F3600 X" << x << " Y" << y << " Z0.0";
+            // std::cout << fmt.str() << std::endl;
+            dg.parseLine(fmt.str());
+            usleep(1000);
+        }
+
 
     } else {
 
@@ -44,7 +56,7 @@ int main(int argc, char** argv)
         for (std::vector<gpr::block>::iterator ptr = p.begin(); ptr < p.end(); ptr++) {
             // std::cout << ptr->to_string() << std::endl;
             dg.parseLine(ptr->to_string());
-            usleep(10000);
+            usleep(1000);
         }
 
     }
